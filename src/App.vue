@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="ui equal width grid">
         <div class="ui attached stackable menu">
-            <div class="ui fluid container">
+            <div class="ui container">
                 <router-link :to="{ name: 'task' }">
                     <a class="item">
                         <i class="tasks icon"></i> Task
@@ -15,11 +15,7 @@
             </div>
         </div>
 
-        <div class="column">
-            <div class="">
-            </div>
-        </div>
-        <div class="eight wide column">
+        <div class="ui container area">
             <div class="ui segment">
                 <div class="ui divided items">
                     <div class="item">
@@ -36,10 +32,6 @@
                         <router-view/>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="">
             </div>
         </div>
     </div>
@@ -60,19 +52,29 @@ export default {
          transform: scale(1.03);
     }
 
-    .container {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
-        padding: 1.25rem;
-        max-width: 1024px !important;
+    .ui.menu > .container {
         margin: 1rem auto 0 auto;
     }
 
+    .ui.grid > * {
+        padding: 0;
+    }
+
+    a {
+        color: black;
+    }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
+    }
+
+    .area {
+        margin-top: 1.25rem;
+    }
+
+    .router-link-exact-active {
+        background-color: whitesmoke;
     }
 </style>
