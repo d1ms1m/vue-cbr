@@ -173,24 +173,7 @@ export default {
       this.data.addChildren(node)
       this.selectedNode = node
     },
-    // _findNodeById: function (id) {
-    //   function findById (data) {
-    //     var result = {}
-    //     for (var i = 0; i < data.length; i++) {
-    //       if (data[i].id === id) {
-    //         return data[i]
-    //       } else if (data[i].children && data[i].children.length && typeof data[i].children === 'object') {
-    //         result = findById(data[i].children)
-    //         if (result.id === id) return result
-    //       }
-    //     }
-    //     return result
-    //   }
-    //   return findById(this.data.children)
-    // },
     onAddChild (node) {
-      // let node = this._findNodeById(data.id)
-      // this.$set(node, 'attributes', [])
       this.selectedNode = node
     },
     getNewTree: function () {
@@ -276,7 +259,7 @@ export default {
     }
 
     .vtl .vtl-drag-disabled, .vtl .vtl-drag-disabled:hover {
-        background-color: #dbd7d7;
+        background-color: whitesmoke;
         position: relative;
     }
 
