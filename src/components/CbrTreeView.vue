@@ -114,7 +114,6 @@ export default {
   },
   data () {
     return {
-      // record: null,
       treeJSON: {},
       selectedNode: {},
       breadcrumbPath: [],
@@ -170,9 +169,6 @@ export default {
     onClick: function (node) {
       this.changeSelectedNode(node)
     },
-    // getTreeChange: function () {
-    //   this.record = Object.assign({}, VueTreeList.Record)
-    // },
     addNode: function () {
       let node = new VueTreeList.TreeNode({name: 'new Node', isLeaf: false, attributes: []})
       if (!this.data.children) this.data.children = []
@@ -233,13 +229,10 @@ export default {
     },
     addAttribute: function () {
       if (!this.selectedNode.attributes) {
-        // this.selectedNode = Object.assign({}, this.selectedNode, {attributes: []})
         this.$set(this.selectedNode, 'attributes', [])
       }
       // вычисляем id
-      let id = this.selectedNode.attributes.map(function (item) {
-        return item.id
-      }).sort().pop()
+      let id = this.selectedNode.attributes.map(item => item.id).reduce((acc, cur) => Math.max(acc, cur), Number.NEGATIVE_INFINITY)
       id = isNaN(id) ? 0 : id + 1
 
       this.selectedNode.attributes.push(new TreeNodeAttribute({id}))
