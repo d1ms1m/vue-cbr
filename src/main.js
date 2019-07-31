@@ -9,7 +9,7 @@ window.$ = window.jQuery = require('jquery')
 require('semantic-ui-css/semantic.css')
 require('semantic-ui-css/semantic.js')
 
-Vue.component('cbr-tree-view', () => import('@/components/CbrTreeView.vue'))
+// Vue.component('tree-with-node-attributes', () => import('@/components/TreeWithNodeAttributes.vue'))
 
 Vue.config.productionTip = false
 
