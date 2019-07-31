@@ -78,10 +78,6 @@ export default {
         padding: 5px 11px;
     }
 
-    .ui.link.card:hover {
-        cursor: default;
-    }
-
     input {
         min-width: 100%;
         max-width: 100%;
