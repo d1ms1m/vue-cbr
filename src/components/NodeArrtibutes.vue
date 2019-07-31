@@ -29,7 +29,7 @@
         </tbody>
         <tbody v-else>
         <tr>
-            <td colspan="2" class="center aligned">empty</td>
+            <td colspan="3" class="center aligned">empty</td>
         </tr>
         </tbody>
     </table>
@@ -69,10 +69,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .ui.table td:not(.trash-icon) {
-        cursor: pointer;
-    }
-
     .ui.table td,
     .ui.table thead th {
         padding: 5px 11px;
@@ -87,7 +83,7 @@ export default {
         color: lightcoral;
     }
 
-    .trash.icon:hover {
+    .icon:hover {
         cursor: pointer;
     }
 </style>
