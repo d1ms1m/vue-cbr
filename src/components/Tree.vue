@@ -4,6 +4,7 @@
     </vue-tree-list>
 </template>
 <script>
+/* global $ */
 import VueTreeList from 'vue-tree-list'
 
 export default {
@@ -66,7 +67,6 @@ export default {
       node.remove()
     },
     onClick: function (node) {
-      console.log('tree.click')
       this.changeSelectedNode(node)
     },
     addNode: function () {
@@ -105,6 +105,10 @@ export default {
     changeSelectedNode: function (node) {
       this.selectedNode = node
       this.getBreadcrumbPath(node)
+      // подсветка выбранного node
+      $('.vtl-tree-node.selected').toggleClass('selected') // убрать
+      $('#' + node.id).toggleClass('selected') // // подсветить
+
       this.$emit('selected-node-changed')
     },
     getBreadcrumbPath: function (selectedNode) {
@@ -150,7 +154,7 @@ export default {
     }
 
     .vtl .vtl-disabled, .vtl .vtl-disabled:hover {
-        background-color: lightcoral;
+        color: lightgray;
         position: relative;
     }
 
@@ -160,5 +164,17 @@ export default {
 
     .vtl-tree-node:hover {
         cursor: pointer;
+    }
+
+    .vtl-tree-node.selected:hover {
+        background-color: #FBBD08;
+    }
+    .vtl-tree-node.selected {
+        color: black;
+        background-color: #FBBD08;
+    }
+    .vtl-tree-node.selected.vtl-disabled {
+        color: grey;
+        background-color: #FBBD08;
     }
 </style>
