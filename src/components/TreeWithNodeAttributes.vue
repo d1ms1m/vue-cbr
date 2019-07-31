@@ -96,4 +96,8 @@ export default {
         display: block;
         margin-bottom: 1em;
     }
+
+    .ui.link.card:hover {
+        cursor: default;
+    }
 </style>
