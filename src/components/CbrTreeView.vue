@@ -8,7 +8,7 @@
                         <div class="meta left aligned">by <a
                                 href="https://github.com/ParadeTo/vue-tree-list" target="_blank">ParadeTo</a></div>
                         <div class="description">
-                            <button class="ui compact labeled icon button" @click="addRootNode">
+                            <button class="ui compact labeled icon button" @click="addNode">
                                 <i class="plus icon"></i>
                                 Add tree node
                             </button>
@@ -22,7 +22,10 @@
                 <div class="ui raised link card">
                     <div class="content">
                         <div class="header left aligned">Node attribute</div>
-                        <div class="meta left aligned">{{ selectedNode.name ? selectedNode.name : 'click on tree node' }}</div>
+                        <div class="meta left aligned">
+                            <breadcrumb v-if="breadcrumbPath.length > 0" :path="breadcrumbPath"></breadcrumb>
+                            <span v-else>click on tree node</span>
+                        </div>
                         <div v-show="selectedNode.name" class="description">
                             <button class="ui compact labeled icon button" @click="addAttribute">
                                 <i class="plus icon"></i>
@@ -69,17 +72,18 @@
         </div>
 
         <div class="ui left aligned segment">
-            <button class="ui compact labeled icon button" @click="getNewTree">
+            <button class="ui compact labeled icon button" @click="getTreeJSON">
                 <i class="sign out alternate icon"></i>
                 Show tree JSON
             </button>
-            <pre>{{newTree}}</pre>
+            <pre>{{treeJSON}}</pre>
         </div>
     </div>
 </template>
 
 <script>
 import VueTreeList from 'vue-tree-list'
+import Breadcrumb from '@/components/Breadcrumb'
 
 const DEFAULT_ATTRIBUTE_KEY = 'new attr key'
 const DEFAULT_ATTRIBUTE_VALUE = 'new attr value'
@@ -95,6 +99,7 @@ const TreeNodeAttribute = function (data) {
 export default {
   name: 'cbr-tree-view',
   components: {
+    Breadcrumb,
     'VueTreeList': VueTreeList.VueTreeList
   },
   props: {
@@ -109,9 +114,10 @@ export default {
   },
   data () {
     return {
-      record: null,
-      newTree: {},
+      // record: null,
+      treeJSON: {},
       selectedNode: {},
+      breadcrumbPath: [],
       data: new VueTreeList.Tree([
         {
           name: 'Node 1',
@@ -162,21 +168,21 @@ export default {
       node.remove()
     },
     onClick: function (node) {
-      this.selectedNode = node
+      this.changeSelectedNode(node)
     },
-    getTreeChange: function () {
-      this.record = Object.assign({}, VueTreeList.Record)
-    },
-    addRootNode: function () {
+    // getTreeChange: function () {
+    //   this.record = Object.assign({}, VueTreeList.Record)
+    // },
+    addNode: function () {
       let node = new VueTreeList.TreeNode({name: 'new Node', isLeaf: false, attributes: []})
       if (!this.data.children) this.data.children = []
       this.data.addChildren(node)
-      this.selectedNode = node
+      this.changeSelectedNode(node)
     },
     onAddChild (node) {
-      this.selectedNode = node
+      this.changeSelectedNode(node)
     },
-    getNewTree: function () {
+    getTreeJSON: function () {
       function _dfs (oldNode) {
         let newNode = {}
 
@@ -195,7 +201,35 @@ export default {
         return newNode
       }
 
-      this.newTree = _dfs(this.data)
+      this.treeJSON = _dfs(this.data)
+    },
+    changeSelectedNode: function (node) {
+      this.selectedNode = node
+      this.getBreadcrumbPath(node)
+    },
+    getBreadcrumbPath: function (selectedNode) {
+      let node = this.findNodeById(this.data.children, selectedNode.id)
+      let result = []
+      result.unshift(node.name)
+      while (node.pid !== 0) {
+        node = this.findNodeById(this.data.children, node.pid)
+        result.unshift(node.name)
+      }
+      this.breadcrumbPath = result
+    },
+    findNodeById: function (data, id) {
+      var ret = -1
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].id === id) {
+          return data[i]
+        } else if (data[i].children && data[i].children.length && typeof data[i].children === 'object') {
+          ret = this.findNodeById(data[i].children, id)
+          if (ret.id === id) {
+            return ret
+          }
+        }
+      }
+      return ret
     },
     addAttribute: function () {
       if (!this.selectedNode.attributes) {
