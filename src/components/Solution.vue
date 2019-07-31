@@ -1,10 +1,15 @@
 <template>
-    <cbr-tree-view></cbr-tree-view>
+    <tree-with-node-attributes></tree-with-node-attributes>
 </template>
 
 <script>
+import TreeWithNodeAttributes from '@/components/TreeWithNodeAttributes'
+
 export default {
-  name: 'Solution'
+  name: 'Solution',
+  components: {
+    TreeWithNodeAttributes
+  }
 }
 </script>
 
