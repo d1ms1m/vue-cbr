@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Solution from '@/components/Solution'
-import Task from '@/components/Task'
+import Solution from '@/views/Solution'
+import Task from '@/views/Task'
 
 Vue.use(Router)
 
