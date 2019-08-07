@@ -1,5 +1,5 @@
 <template>
-    <div class="cbr-tree-view">
+    <div class="tree-view">
         <div class="ui raised very padded segment">
             <div class="ui two cards">
                 <div class="ui raised link card">
@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style>
-    .cbr-tree-view {
+    .tree-view {
         width: 100%;
     }
 
