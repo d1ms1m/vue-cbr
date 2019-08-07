@@ -1,6 +1,6 @@
-# vue-cbr
+# vue-test-tree
 
-> The dimsim's test vue project
+> The dimsim's test vue project (treeview with unlim tree node arrtibutes)
 
 ## Build Setup
 
