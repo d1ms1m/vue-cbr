@@ -1,5 +1,5 @@
 <template>
-    <div id="cbr-task" class="ui raised very padded link card">
+    <div id="task" class="ui raised very padded link card">
         <div class="content">
             <div class="ui header left aligned">Test task №7 (leading expert)</div>
             <div class="ui meta left aligned">
@@ -58,7 +58,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    #cbr-task {
+    #task {
         width: 100%;
     }
 
