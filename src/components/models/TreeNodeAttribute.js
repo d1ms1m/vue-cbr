@@ -17,7 +17,7 @@ const TreeNodeAttribute = function (data) {
   this.value = data.value || DEFAULT_ATTRIBUTE_VALUE
 
   // other params
-  for (var k in data) {
+  for (let k in data) {
     if (k !== 'id' && k !== 'editable' && k !== 'key' && k !== 'value') {
       this[k] = data[k]
     }

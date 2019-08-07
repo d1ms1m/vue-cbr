@@ -20,12 +20,12 @@
                 <div class="ui divided items">
                     <div class="item">
                         <div class="ui small image">
-                            <a href="https://cbr.ru" target="_blank">
-                                <img id="logo" class="ui small circular image" src="@/assets/cbrf_logo.png">
+                            <a href="mailto:dimsim@mail.ru" target="_blank">
+                                <img id="logo" class="ui small circular image" src="@/assets/dimsim_logo.png">
                             </a>
                         </div>
                         <div class="middle aligned content">
-                            <h1 class="ui header">Welcome to CBR's test project by Dmitry Simontsev</h1>
+                            <h1 class="ui header">Welcome to <a href="mailto:dimsim@mail.ru">dimsim's</a> test vue project</h1>
                         </div>
                     </div>
                     <div class="item">

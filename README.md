@@ -1,6 +1,6 @@
 # vue-cbr
 
-> The CBR's test project
+> The dimsim's test vue project
 
 ## Build Setup
 

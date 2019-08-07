@@ -122,8 +122,8 @@ export default {
       this.breadcrumbPath = result
     },
     findNodeById: function (data, id) {
-      var ret = -1
-      for (var i = 0; i < data.length; i++) {
+      let ret = -1
+      for (let i = 0; i < data.length; i++) {
         if (data[i].id === id) {
           return data[i]
         } else if (data[i].children && data[i].children.length && typeof data[i].children === 'object') {
